@@ -64,7 +64,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('bank.view_user_clouds', user_id=user['id']))
 
         flash(error)
 
@@ -81,7 +81,7 @@ def load_user_info():
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
 
-   
+@bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
@@ -91,5 +91,5 @@ def login_required(view):
     def wrapped_view(**kwargs):
         if g.user is None:
             return redirect(url_for('auth.login'))
-
+        return view(**kwargs)
     return wrapped_view

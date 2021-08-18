@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Your Clouds{% endblock %}</h1>
+{% endblock %}
+
+{% block content%}
+    <a href="{{ url_for('bank.create') }}" >Add New</a>
+    <br>
+    {% for cloud in clouds %}
+        <br>
+        <div>
+            <p>{{ cloud['id'] }}</p>
+            <a href="#">{{ cloud['cloudname'] }}</a>
+            <p>{{ cloud['created'] }}</p>
+            <a class="action" href="{{ url_for('bank.update', id=cloud['id']) }}">Edit</a>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}
