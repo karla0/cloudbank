@@ -11,13 +11,12 @@ from cloud_folder.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@bp.route('/register', methods=('GET', 'POST'))
-def register():
+@bp.route('/signup', methods=('GET', 'POST'))
+def signup():
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
         email = request.form['email']
-
+        password = request.form['password']
+        
         db = get_db()
         error = None
 
@@ -29,9 +28,10 @@ def register():
         if error is None:
             try:
                 db.execute( 
-                    "INSERT INTO user (email, password) VALUES(?, ?, ?)",
+                    "INSERT INTO user (email, password) VALUES(?, ?)",
                     (email, generate_password_hash(password)),
                 )
+
                 db.commit()
 
             except db.IntegrityError:
@@ -41,7 +41,7 @@ def register():
                 return redirect(url_for("auth.login"))
         flash(error)
 
-    return render_template('auth/register.html')
+    return render_template('auth/signup.html')
 
 
 @bp.route('/login', methods=("GET", "POST"))
@@ -58,7 +58,6 @@ def login():
 
         if user is None:
             error = 'No account with that email found.'
-
         elif not check_password_hash(user['password'], password):
             error = "Incorrect password."
 

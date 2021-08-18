@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask
-from . import auth ,db
+from . import auth, bank, db
 
 
 def create_app(test_config=None):
@@ -9,7 +9,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY = 'dev',
-        DATABASE=os.path.join(app.instance_path, 'cloudband.sqlite')
+        DATABASE=os.path.join(app.instance_path, 'cloudbank.sqlite')
     )
 
     if test_config is None:
@@ -24,6 +24,8 @@ def create_app(test_config=None):
 
     db.init_app(app)
     app.register_blueprint(auth.bp)
+    app.register_blueprint(bank.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app
 

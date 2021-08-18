@@ -7,12 +7,12 @@ CREATE TABLE user (
     password TEXT  NOT NULL
 );
 
-CREATE TABLE point_cloud (
+CREATE TABLE cloud (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     author_id INTEGER NOT NULL,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     cloudname TEXT NOT NULL,
     description TEXT NOT NULL,
-    image BLOB,
+    image BLOB NULL,
     FOREIGN KEY (author_id) REFERENCES user (id)
 );
