@@ -1,20 +1,26 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}Your Clouds{% endblock %}</h1>
+    <p id="clouds-header">{% block title %}Clouds{% endblock %}</p>
 {% endblock %}
 
 {% block content%}
-    <a href="{{ url_for('bank.create') }}" >Add New</a>
-    <br>
-    {% for cloud in clouds %}
-        <br>
-        <div>
-            <p>{{ cloud['id'] }}</p>
-            <a href="#">{{ cloud['cloudname'] }}</a>
-            <p>{{ cloud['created'] }}</p>
-            <a class="action" href="{{ url_for('bank.update', id=cloud['id']) }}">Edit</a>
+    <div id='link-div'>
+        <a id="add-new-link" href="{{ url_for('bank.create') }}" >Add New</a>
+    </div>
+    <div class='container' id='clouds-list'>
+        {% for cloud in clouds %}
+        <div class="row data-cloud">
+            <div class="col" id='cloud-header'>
+                <p>{{ cloud['cloudname'] }}</p>
+            </div>
+            <div class="col" id='cloud-created'>
+                <p>{{ cloud['created'] }}</p>
+            </div>
+            <div class="col" id="cloud-edit">
+                <a href="{{ url_for('bank.update', id=cloud['id']) }}" id="cloud-edit">Edit</a>
+            </div>
         </div>
-        <br>
-    {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -15,6 +15,7 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 def signup():
     if request.method == 'POST':
         email = request.form['email']
+        name = request.form['name']
         password = request.form['password']
         
         db = get_db()
@@ -28,8 +29,8 @@ def signup():
         if error is None:
             try:
                 db.execute( 
-                    "INSERT INTO user (email, password) VALUES(?, ?)",
-                    (email, generate_password_hash(password)),
+                    "INSERT INTO user (name, email, password) VALUES(?, ?, ?)",
+                    (name ,email, generate_password_hash(password)),
                 )
 
                 db.commit()

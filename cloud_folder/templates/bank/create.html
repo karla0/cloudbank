@@ -1,17 +1,23 @@
 {% extends 'base.html' %}
 
 {% block header %}
-    <h1>{% block title %}Add New{% endblock %}</h1>
+    <p>{% block title %}Add New{% endblock %}</p>
 {% endblock %}
 
 {% block content %}
     <form method="POST">
-        <label for="cloudname">Cloud Name</label>
-        <input name="cloudname" id="cloudname" value="{{ request.form['cloudname'] }}" >
-        <label for="description">Description</label>
-        <textarea name="description" id="description">{{ request.form['description'] }}</textarea>
-        <label for="fileblob">Upload Data</label>
-        <input type="file" id="fileblob" name="fileblob">
-        <input type="submit" value="Submit" >
+        <div class="form-group">
+            <label for="cloudname">Cloud Name</label>
+            <input class="form-control" name="cloudname" id="cloudname" value="{{ request.form['cloudname'] }}" >
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" id="description">{{ request.form['description'] }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="fileblob">Upload Data</label>
+            <input class="form-control-file" type="file" id="fileblob" name="fileblob">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 {% endblock %}

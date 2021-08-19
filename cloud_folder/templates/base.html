@@ -4,31 +4,54 @@
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
  
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>{% block title %}Home{% endblock %} - CloudBank </title>
 </head>
 <body>
-    <nav>
-        <h1>CloudBank</h1>
-        <ul>
-            {% if g.user %}
-                <li><span>{{ g.user['email'] }}</span></li>
-                <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
-            {% else %}
-                <li><a href="{{ url_for('auth.signup') }}" >Sign Up</a></li>
-                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    <section class="content">
-        <header>
-            {% block header %}{% endblock %}
-        </header>
-        {% for message in get_flashed_messages() %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
-        {% block content %}{% endblock %}
-    </section>
+    <div class="container-fluid">
+        <div class="row" id="header-row">
+            <div id="app-name" class="col p-3">
+                <a class="align-middle" href="{{ url_for('index') }}"><img src="{{url_for('static', filename='cloud.svg')}}" style="max-width: 30px; margin-right: 2%;"/>CloudBank</a>
+            </div>
+            <div class="col m-3">
+                <ul class="nav justify-content-end align-middle ">
+                    {% if g.user %}
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#">Hi, {{ g.user['name'] }}</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{{ url_for('auth.logout') }}">Log Out</a>
+                    </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('auth.signup') }}" >Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="{{ url_for('auth.login') }}">Log In</a></li>
+                    {% endif %}
+                  </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="body-div">
+        <aside id='left-nav'>
+            <a class="left-nav-link" href="#">Home</a>
+            <a  class="left-nav-link" href="#">Create</a>
+        </aside>
+        <div id="main-content-div">
+            <div id="page-header">
+                {% block header %}{% endblock %}
+            </div>
+            <div id="cards-div">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
 </body>
 </html>

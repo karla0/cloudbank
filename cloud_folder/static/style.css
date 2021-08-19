@@ -1,0 +1,151 @@
+body {
+    background-color: #87BFFF;
+}
+
+#add-new-link {
+    background-color: #1DAF46;
+    color: #FFFFFF;
+    width: 20%;
+    text-align: center;
+    padding: 1.2%;
+    border-radius: 30px;
+}
+
+#app-name {
+    font-size: 1.2em;
+}
+#app-name a:link {
+    color: #808080;
+}
+#app-name a:visited {
+    color: #808080;
+}
+
+#app-name a:hover {
+    color: #91A6FF;
+    text-decoration: none;
+}
+
+#cards-div {
+    display: flex;
+    flex-direction: column;
+    padding: 2%;
+    margin: auto;
+
+}
+#link-div {
+    display: flex;
+    justify-content: center;
+
+}
+.cloud-card {
+    padding: 1%;
+    margin: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+}
+
+#clouds-list {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    margin: 2%;
+}
+
+.data-cloud {
+    background-color: #FFFFFF;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 20px;
+    align-items: center;
+}
+
+
+#clouds-header {
+    font-size: 1.5em;
+    padding: .5%;
+}
+
+#cloud-header {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+#cloud-created {
+    text-align: center;
+    font-size: 1em;
+    color: #808080;
+}
+
+#cloud-edit {
+    text-align: end;
+    margin-right: 1%;
+}
+
+#header-row {
+    background-color: #ADD7F6;
+}
+
+
+#footer {
+    background-color: #3B28CC;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+#form-div {
+    display: flex;
+    justify-content: center;
+}
+
+#left-nav {
+    background-color: #3F8EFC;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    max-width: 300px;
+    height: 100vh;
+}
+
+.left-nav-link {
+    color: #FFFFFF;
+    text-align: center;
+    padding: 5%;
+    border-bottom: #045EDC solid 2px;
+}
+
+#main-content-div {
+    width: 80%;
+
+}
+
+#body-div {
+    display: flex;
+    flex-direction: row;
+}
+
+#page-header {
+    text-align: center;
+    background-color: #3B28CC;
+    color: #FFFFFF;
+}
+
+#test {
+    background-color: orchid;
+    display: flex;
+    flex-direction: column;
+}
+
+#signup-form {
+    background-color: #5F8BD3;
+    width: 80%;
+    padding: 5%;
+    border-radius: 20px;
+    box-shadow: 10px 5px 5px #24477F;
+}
