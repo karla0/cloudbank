@@ -1,12 +1,11 @@
 from flask import ( Blueprint, flash, g, redirect, 
                     render_template, request, url_for
 )
-from flask.globals import session
-
 from werkzeug.exceptions import abort
 
 from cloud_folder.auth import login_required
 from cloud_folder.db import get_db
+from cloud_folder.aws_functions import get_uploaded_file
 
 bp = Blueprint('bank', __name__)
 
@@ -28,7 +27,7 @@ def create():
         cloudname = request.form['cloudname']
         author_id = g.user['id']
         description = request.form['description']
-        image_blob = request.form['fileblob']
+        s3_location = get_uploaded_file(request)
         error = None
 
         if not cloudname:
@@ -38,9 +37,9 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO cloud (cloudname, description, author_id, image)'
+                'INSERT INTO cloud (cloudname, description, author_id, s3_url)'
                 ' VALUES (?, ?, ?, ?)',
-                (cloudname, description ,author_id, image_blob)
+                (cloudname, description ,author_id, s3_location)
             )
 
             db.commit()
@@ -123,3 +122,4 @@ def update(id):
 def view_user_clouds():
     clouds = get_clouds()
     return render_template('bank/cloud_view.html', clouds=clouds)
+    

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="cloudname">Cloud Name</label>
             <input class="form-control" name="cloudname" id="cloudname" value="{{ request.form['cloudname'] }}" >
@@ -15,8 +15,8 @@
             <textarea class="form-control" name="description" id="description">{{ request.form['description'] }}</textarea>
         </div>
         <div class="form-group">
-            <label for="fileblob">Upload Data</label>
-            <input class="form-control-file" type="file" id="fileblob" name="fileblob">
+            <label for="file">Upload Data</label>
+            <input class="form-control-file" type="file" id="file" name="file">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

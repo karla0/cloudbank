@@ -14,6 +14,6 @@ CREATE TABLE cloud (
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     cloudname TEXT NOT NULL,
     description TEXT NOT NULL,
-    image BLOB NULL,
+    s3_url TEXT NOT NULL ,
     FOREIGN KEY (author_id) REFERENCES user (id)
 );
